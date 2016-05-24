@@ -7,7 +7,7 @@
 ICE(mat, itermax = 1, maxdev = 0.1, verbose = TRUE)
 }
 \arguments{
-\item{mat}{A contact matrix (could be the output of \code{\link{get_contact_matrix}})}
+\item{mat}{A contact matrix (could be the output of \code{\link{get_contacts_matrix}})}
 
 \item{maxdev}{Maximum relative deviation from the mean of the correction factor}
 
@@ -19,7 +19,7 @@ ICE(mat, itermax = 1, maxdev = 0.1, verbose = TRUE)
 A named \code{sparse_matrix} containing the normalized number of contacts per pair of genomic bins at the requested region plus the \code{b} attribute containing the vector of correction factors
 }
 \description{
-This function takes a contact matrix (tipically the output of \code{\link{get_contact_matrix}} and performs ICE normalization
+This function takes a contact matrix (tipically the output of \code{\link{get_contacts_matrix}} and performs ICE normalization
 }
 \examples{
 plot(0)
