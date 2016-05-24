@@ -3,7 +3,6 @@
 #' This function takes a HiC contact matrix and creates heatmap-like prepresentation of it
 #' @import magrittr
 #' @import Matrix
-#' @importFrom raster as.raster
 #' @param mat HiC contact matrix (it could be the output of \code{\link{get_contacts_matrix}})
 #' @param coord A vector of size two with the start and end coordinates of the desired region to plot
 #' @param resolution Resolution (bin size) in bp
