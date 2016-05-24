@@ -10,6 +10,7 @@
 #' @param color Vector of colors
 #' @param sym Logical indicating if the color scale should be simetrical (around 0)
 #' @param trim Numeric proportion of the data that should be 'flattened' on both extremes
+#' @param rotate Logical indicating if the matrix should be rotated
 #' @param unit_x_axis Numeric unit for the X axis
 #' @param label_x_axis Character X axis label
 #' @param na.col Color to depict \code{NA} values
@@ -21,14 +22,20 @@
 plot_matrix <- function(mat, coord, resolution,
                         transformation = logfinite,
                         color = colorRampPalette(c("white", "red"))(100),
-                        sym = FALSE, trim = .01,
+                        sym = FALSE, trim = .01, rotate = FALSE,
                         unit_x_axis = 1e6,
                         label_x_axis = "Genomic Position / Mbp",
                         na.col = "white",
                         ...){
+
+    # settings
+
+    options(scipen = 999)
     
     # prepare matrix
 
+    rownames(mat) <- colnames(mat) <- rownames(mat) %>% gsub("^.*:", "", .)
+    
     lims <- seq(floor(coord[1] / resolution),
                 ceiling(coord[2] / resolution)) * resolution
     
@@ -38,7 +45,7 @@ plot_matrix <- function(mat, coord, resolution,
     mat <- mat[match(lims, rownames(mat)), match(lims, rownames(mat))]
     rownames(mat) <- colnames(mat) <- lims
 
-    mat <- mat[nrow(mat):1,]
+    if(rotate) mat <- mat[nrow(mat):1,]
     
     # prepare axis info and parameters
 
