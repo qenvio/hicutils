@@ -1,10 +1,10 @@
 #' Quick and dirty implementation of ICE matrix normalization
 #'
-#' This function takes a contact matrix (tipically the output of \code{\link{get_contact_matrix}} and performs ICE normalization
+#' This function takes a contact matrix (tipically the output of \code{\link{get_contacts_matrix}} and performs ICE normalization
 #' @import magrittr
 #' @import Matrix
 #' @importFrom dplyr mutate
-#' @param mat A contact matrix (could be the output of \code{\link{get_contact_matrix}})
+#' @param mat A contact matrix (could be the output of \code{\link{get_contacts_matrix}})
 #' @param intermax Maximum number of iterations
 #' @param maxdev Maximum relative deviation from the mean of the correction factor 
 #' @param verbose Logical indicating if progression messages should be turned on
