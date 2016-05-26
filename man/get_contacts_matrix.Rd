@@ -4,8 +4,8 @@
 \alias{get_contacts_matrix}
 \title{Make a contact matrix from HiC data}
 \usage{
-get_contacts_matrix(inbam, resolution, region, pos, whole = F, filtin = 0,
-  filtex = 783)
+get_contacts_matrix(inbam, resolution, region = NULL, pos, whole = F,
+  filtin = 0, filtex = 783)
 }
 \arguments{
 \item{inbam}{HiC-BAM file}

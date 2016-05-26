@@ -16,7 +16,7 @@
 #' @examples
 #' plot(0)
 
-get_contacts_matrix <- function(inbam, resolution, region, pos, whole = F, filtin = 0, filtex = 783){
+get_contacts_matrix <- function(inbam, resolution, region = NULL, pos, whole = F, filtin = 0, filtex = 783){
 
     if(whole){
         
