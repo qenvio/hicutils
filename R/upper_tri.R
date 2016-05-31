@@ -19,7 +19,7 @@ upper_tri <- function(mat){
                                   dims = dim(mat),
                                   dimnames = dimnames(mat)))
 
-    diag(out) <- round(diag(out) / 2)
+    diag(out) <- diag(out) / 2
     
     out
 
