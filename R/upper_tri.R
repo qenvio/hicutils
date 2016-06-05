@@ -11,6 +11,22 @@
 
 upper_tri <- function(mat){
 
+    idx <- min(100, nrow(mat))
+    
+    check <- summary(mat[1:idx, 1:idx]) %>%
+        summarize(upper = sum(i > j),
+                  lower = sum(j > i)) %>%
+        slice(1) %>%
+        unlist
+
+    if(min(check) == 0) {
+        
+        message("Matrix seems to be already upper diagonal, doing nothing ...")
+        
+        return(mat)
+
+    }
+
     out <- summary(mat) %>%
         filter(j >= i) %>%
         (function(x) sparseMatrix(i = x$i,
