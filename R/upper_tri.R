@@ -11,7 +11,7 @@
 
 upper_tri <- function(mat){
 
-    check <- c(triu(mat, -1) %>% sum, tril(mat, -1) %>% sum)
+    check <- c(triu(mat, -1) %>% sum(na.rm = T), tril(mat, -1) %>% sum(na.rm = T))
     
     if(min(check) == 0) {
         
