@@ -11,14 +11,8 @@
 
 upper_tri <- function(mat){
 
-    idx <- min(100, nrow(mat))
+    check <- c(triu(mat, -1) %>% sum, tril(mat, -1) %>% sum)
     
-    check <- summary(mat[1:idx, 1:idx]) %>%
-        summarize(upper = sum(i > j),
-                  lower = sum(j > i)) %>%
-        slice(1) %>%
-        unlist
-
     if(min(check) == 0) {
         
         message("Matrix seems to be already upper diagonal, doing nothing ...")
@@ -27,13 +21,7 @@ upper_tri <- function(mat){
 
     }
 
-    out <- summary(mat) %>%
-        filter(j >= i) %>%
-        (function(x) sparseMatrix(i = x$i,
-                                  j = x$j,
-                                  x = x$x,
-                                  dims = dim(mat),
-                                  dimnames = dimnames(mat)))
+    out <- triu(mat)
 
     diag(out) <- diag(out) / 2
     
