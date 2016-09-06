@@ -13,15 +13,9 @@
 
 simetrize_matrix <- function(mat){
 
-    idx <- min(100, nrow(mat))
-    
-    check <- summary(mat[1:idx, 1:idx]) %>%
-        summarize(upper = sum(i > j),
-                  lower = sum(j > i)) %>%
-        slice(1) %>%
-        unlist
+    check <- c(triu(mat, -1) %>% sum(na.rm = T), tril(mat, -1) %>% sum(na.rm = T))
 
-    if(length(unique(check)) == 1) {
+    if(min(check) > 0) {
         
         message("Matrix seems to be already symetric, doing nothing ...")
         
