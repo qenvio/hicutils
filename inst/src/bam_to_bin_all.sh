@@ -67,4 +67,4 @@ region=$2
 samtools view -f $filterin -F $filterex $inbam $region | \
 	awk -v w=$resolution -v OFS="\t" \
     '{j = int($8 / w) * w; i = int($4 / w) * w;  d = (i == j); c = ($3 == $7) || ($7 == "=");
-     a[$3 OFS i OFS c OFS d] += 1}END{for(k in a) print k, a[k]}'
+     a[$3 OFS i OFS c OFS d * c] += 1}END{for(k in a) print k, a[k]}'
