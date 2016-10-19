@@ -36,30 +36,30 @@ ICE <- function(mat, itermax = 1, maxdev = .1, verbose = TRUE){
 
     for(i in 1:itermax){
     
-        s <- colSums(mat)
-        sm <- mean(s)
+        s <- colSums(mat, na.rm = T)
+        s[is.na(b)] <- NA
+        sm <- mean(s, na.rm = T)
         
-        delta_b <- (s / sm)
+        delta_b <- (s/sm)
         
-        B <- Diagonal(x = 1 / delta_b)
+        B <- Diagonal(x = 1/delta_b)
         
         b <- b * delta_b
         
         mat <- B %*% (mat %*% B)
         
-        dev <- abs((s / sm - 1)) %>% max
-
-        if(verbose) {
+        dev <- abs((s/sm - 1)) %>% max(na.rm = T)
+        
+        if (verbose) {
             
             paste(i,
-                  min(s) %>% format(digits = 2),
+                  min(s, na.rm = T) %>% format(digits = 2),
                   sm %>% format(digits = 2),
-                  max(s) %>% format(digits = 2),
+                  max(s, na.rm = T) %>% format(digits = 2),
                   dev %>% format(digits = 5),
                   "\n",
                   sep = "\t") %>%
                 cat
-
         }
         
         if(dev < maxdev) break
