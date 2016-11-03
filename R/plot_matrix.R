@@ -50,6 +50,8 @@ plot_matrix <- function(mat, coord, resolution,
     # prepare axis info and parameters
 
     guides <- pretty(x = rownames(mat) %>% as.numeric)
+    guides_pos <- pretty(x = rownames(mat) %>% as.numeric) %>% match(rownames(mat))
+    
     par(mar = c(4, 0, 0, 0), pty = "s")
 
     # trimm
@@ -113,7 +115,7 @@ plot_matrix <- function(mat, coord, resolution,
     rasterImage(as.raster(unclass(x)),
                 xleft = 0, xright = nc, ybottom = 0, ytop = nr,
                 interpolate = FALSE)
-    axis(1, at = guides / resolution,
+    axis(1, at = guides_pos,
          labels = guides / unit_x_axis, cex.axis = 1.5)
     
     invisible()
