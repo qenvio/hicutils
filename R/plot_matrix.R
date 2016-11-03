@@ -50,7 +50,10 @@ plot_matrix <- function(mat, coord, resolution,
     # prepare axis info and parameters
 
     guides <- pretty(x = rownames(mat) %>% as.numeric)
-    guides_pos <- pretty(x = rownames(mat) %>% as.numeric) %>% match(rownames(mat))
+
+    guides_pos <- data.frame(y = 1:nrow(mat), x = rownames(mat) %>% as.numeric) %>%
+        lm(y ~ x, .) %>%
+        predict(newdata = data.frame(x = guides))
     
     par(mar = c(4, 0, 0, 0), pty = "s")
 
