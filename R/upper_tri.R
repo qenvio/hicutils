@@ -23,8 +23,6 @@ upper_tri <- function(mat){
 
     out <- triu(mat)
 
-    diag(out) <- diag(out) / 2
-    
-    out
+    as(out - band(out, 0, 0) / 2, class(mat))
 
     }
